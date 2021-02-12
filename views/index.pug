@@ -1,0 +1,21 @@
+html
+    head 
+    title User App
+    body
+        h2 Welcome to the User App! 
+        p Please submit your information below: 
+        form(method="post" action="/newUserSubmitted")
+            div
+                label(for='firstName') First Name: 
+                input(id="firstName" name="firstName")
+            div
+                label(for='lastName') Last Name: 
+                input(id="lastName" name="lastName")
+            div
+                label(for='email') Email: 
+                input(id="email" name="email")
+            div
+                label(for='age') Age: 
+                input(id="age" name="age")
+            div 
+                input(type="submit")

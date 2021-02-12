@@ -1,0 +1,26 @@
+html 
+    head
+    title View User Data
+    body
+        h2 User Data 
+        div 
+            table(style ={border: '1px solid black'}) 
+                tr(style ={border: '1px solid black'})
+                    th(style ={border: '1px solid black'}) Username
+                    th(style ={border: '1px solid black'}) First name
+                    th(style ={border: '1px solid black'}) Last name 
+                    th(style ={border: '1px solid black'}) Email 
+                    th(style ={border: '1px solid black'}) Age
+                each val, index in users
+                    tr
+                        td= val.username 
+                        td= val.firstname
+                        td= val.lastname
+                        td= val.email
+                        td= val.age
+                        td 
+                            a(href='/editUser/' + index)
+                                button Edit
+                        td                             
+                            form(action="/delete/" + index, method='post')
+                                button(type='submit') Delete
