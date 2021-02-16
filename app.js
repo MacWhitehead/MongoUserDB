@@ -4,7 +4,7 @@ const path = require("path");
 const port = process.env.PORT || 3000;
 const mongoose = require("mongoose");
 const dbConnectionString = "mongodb://localhost/mtech";
-const uuid = require("uuid");
+const { v4: uuidv4 } = require('uuid');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -19,7 +19,7 @@ mongoose.connect(dbConnectionString, {
 const udb = mongoose.connection;
 
 const userSchema = new mongoose.Schema({
-  userID: uuid(),
+  userID: String,
   first_name: String,
   last_name: String,
   email: String,
@@ -29,8 +29,14 @@ const userSchema = new mongoose.Schema({
 const users = mongoose.model("users", userSchema);
 
 app.get("/", (req, res) => {
-  res.render("viewUsers", {});
+  res.render("index", {});
 });
+
+app.get('/userData', (req, res) => {
+  users.find({}, (err, data) => {
+    res.render('viewUsers', { users: data})
+  })
+})
 
 app.post("/newUserSubmitted", (req, res) => {
   const newUser = new users();
@@ -46,6 +52,12 @@ app.post("/newUserSubmitted", (req, res) => {
   });
   res.redirect("/userData");
 });
+
+app.get(('editUser/:userID', (req, res) => {
+  users.findOne({userID: req.params.userID}, (err, data) => {
+    res.render('editUser', {user: data})
+  })
+}))
 
 app.post("/delete/:index", (req, res) => {
   let matchedName = req.body.firstName;

@@ -11,15 +11,15 @@ html
                     th(style ={border: '1px solid black'}) Last name 
                     th(style ={border: '1px solid black'}) Email 
                     th(style ={border: '1px solid black'}) Age
-                each val, index in users
+                each val in users
                     tr
-                        td= val.username 
-                        td= val.firstname
-                        td= val.lastname
+                        td= val.userID 
+                        td= val.first_name
+                        td= val.last_name
                         td= val.email
                         td= val.age
                         td 
-                            a(href='/editUser/' + index)
+                            a(href='/editUser/' + val.userID)
                                 button Edit
                         td                             
                             form(action="/delete/" + index, method='post')

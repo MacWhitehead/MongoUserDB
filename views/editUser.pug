@@ -2,14 +2,14 @@ html
     head 
     title Edit User Data
     body
-        p= `Editing details for user: ${user.username}`
-        form(method="post" action='/userEdited/' + index)
+        p= `Editing details for user: ${user.userID}`
+        form(method="post" action='/userEdited/' + user.userID)
             div
-                label(for='firstName') First Name: 
-                input(id="firstName" name="firstName" value=user.firstname)
+                label(for='first_name') First Name: 
+                input(id="first_name" name="first_name" value=user.first_name)
             div
-                label(for='lastName') Last Name: 
-                input(id="lastName" name="lastName" value=user.lastname)
+                label(for='last_name') Last Name: 
+                input(id="last_name" name="last_name" value=user.last_name)
             div
                 label(for='email') Email: 
                 input(id="email" name="email" value =user.email)
