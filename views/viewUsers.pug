@@ -4,20 +4,38 @@ html
     body
         h2 User Data 
         div 
+            form(action="/searchByFirst/", method='post')
+                label(for='searchByFirst') Search by first name: 
+                input(id="searchByFirst" name="searchByFirst")
+                button(type='submit') Submit    
+        div 
+            form(action="/searchByLast/", method='post')
+                label(for='searchByLast') Search by last name: 
+                input(id="searchByLast" name="searchByLast")
+                button(type='submit') Submit    
+        div 
+            form(action="/sortAsc/", method='post')
+            label(for='sortAsc') Sort list ascending: 
+            button(type='submit') Submit 
+        div   
+            form(action="/sortDesc/", method='post')
+            label(for='sortAsc') Sort list descending: 
+            button(type='submit') Submit 
+        div 
             table(style ={border: '1px solid black'}) 
                 tr(style ={border: '1px solid black'})
-                    th(style ={border: '1px solid black'}) Username
                     th(style ={border: '1px solid black'}) First name
                     th(style ={border: '1px solid black'}) Last name 
                     th(style ={border: '1px solid black'}) Email 
                     th(style ={border: '1px solid black'}) Age
+                    th(style ={border: '1px solid black'}) User ID
                 each val in users
                     tr
-                        td= val.userID 
                         td= val.first_name
                         td= val.last_name
                         td= val.email
                         td= val.age
+                        td= val.userID 
                         td 
                             a(href='/editUser/' + val.userID)
                                 button Edit
